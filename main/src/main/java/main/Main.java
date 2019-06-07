@@ -21,7 +21,7 @@ public abstract class Main {
      * @throws Exception 
      */
     public static void main(final String[] args) throws Exception {
-    	Model model = new Model(5);
+    	Model model = new Model(2);
 
         UpdateMap umap = new UpdateMap(model);
         umap.start();
