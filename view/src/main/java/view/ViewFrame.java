@@ -19,11 +19,14 @@ import contract.IView;
 /**
  * The Class ViewFrame.
  *
- * @author Mattie Langlois
+ * @author 
  */
 public class ViewFrame extends JFrame implements IView, KeyListener, Observer {
 
 	private ViewPanel panel;
+	
+	/**  States of the game. */
+    private boolean death;
 	 
 	 /** The model. */
 	 private IModel      model;
@@ -38,7 +41,7 @@ public class ViewFrame extends JFrame implements IView, KeyListener, Observer {
 	  *
 	  * @return the controller
 	  */
-	 private IController getController() {
+	 public IController getController() {
 	  return this.controller;
 	 }
 	 
@@ -78,39 +81,28 @@ public class ViewFrame extends JFrame implements IView, KeyListener, Observer {
 	  * @param model
 	  *          the model
 	  */
-	 public ViewFrame(IModel model) {
-		 this.panel = new ViewPanel();
-	     this.model = model;
-	     this.model.getObservable().addObserver(this);
-		 this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		 this.setResizable(false);
-		 this.addKeyListener(this);
-		 this.setContentPane(panel);
-		 this.setSize(485, 355);
-		 this.setLocationRelativeTo(null);
-		 this.setVisible(true);
-		 this.setTitle("Boulder dash");
-		 try {
-			 this.setIconImage(ImageIO.read(new File("C:\\Users\\rg261\\git\\BoulderDash\\model\\src\\main\\resources\\image\\P.png")));
-		 }catch (IOException e) {
-			 e.printStackTrace();
-		 }
-	     this.setContentPane(this.panel);
-	     this.setResizable(false);
-	  	 this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	  	 this.setVisible(true);
-	  	 this.addKeyListener(this);
-	 }
-	 
-	 /**
-	  * Prints the message.
-	  *
-	  * @param message
-	  *          the message
-	  */
-	 public void printMessage(final String message) {
-	  JOptionPane.showMessageDialog(null, message);
-	 }
+	public ViewFrame(){
+	    this.setSize(498, 447);
+	    this.setTitle("Boulder dash");
+	    this.setLocationRelativeTo(null);
+	    this.addKeyListener(this);
+	    this.setResizable(true);
+	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	
+	/** Defined to observe it from the view. */
+	public void init(IModel model) {
+	    this.panel = new ViewPanel();
+	    this.setContentPane(this.panel);
+	    try{
+	        this.setIconImage(ImageIO.read(new File("C:\\Users\\rg261\\git\\BoulderDashFinal\\model\\src\\main\\resources\\image\\P.png")));
+	    }catch(IOException e){
+	        e.printStackTrace();
+	    }
+	    this.setVisible(true);
+	    this.model = model;
+	    this.model.getObservable().addObserver(this);
+	}
 	 
 	 /**
 	  * Detect the keyboard active
@@ -134,16 +126,30 @@ public class ViewFrame extends JFrame implements IView, KeyListener, Observer {
 	        }
 	 }
 	 
+	 public void Run(){
+	        while(true){
+	            this.panel.repaint();
+	            try{
+	                Thread.sleep(150);
+	            }catch(InterruptedException e){
+	                e.printStackTrace();
+	            }
+	        }
+	    }
+	 
 	 /**
 	  * @see java.awt.event.KeyListener
 	  */
 	 public void keyPressed(KeyEvent e) {
-	  try {
-		this.getController().orderPerform(this.KeyCode(e.getKeyCode()));
-	} catch (Exception e1) {
-		e1.printStackTrace();
-	}
-	  
+		 if (death) {
+		 }
+		 else {
+			 try {
+				 this.getController().orderPerform(this.KeyCode(e.getKeyCode()));
+			 } 
+			 catch (Exception e1) {
+			 }
+		 } 
 	 }
 	 
 	 /**
@@ -172,11 +178,26 @@ public class ViewFrame extends JFrame implements IView, KeyListener, Observer {
 
 	        int[] Player = this.model.getPositionsPlayer();
 
-	        this.panel.setPlayerX(Player[2]);
-	        this.panel.setPlayerY(Player[2]);
+	        this.panel.setPlayerX(Player[0]);
+	        this.panel.setPlayerY(Player[1]);
+	        
+	        if(!(this.model.getIsAlivePlayer())) {
+	            this.panel.setDeath(true);
+	            this.death = true;
+	            this.message();
+	            System.exit(0);
+	        }
 
 	        this.panel.Modify();
 	        this.repaint();
 	    }
+	 
+	 public void printMessage (String message) {
+		 JOptionPane.showMessageDialog(null, message);
+	 }
+	 
+	 public void message() {
+			this.printMessage("YOU LOSE !!!");
+		}
 
 }

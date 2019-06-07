@@ -5,8 +5,8 @@ public class Level extends Data {
 	/** id for the level */
     private int id;
     
-    /** The data of the level */
-    private String level;
+    /** The data of the map */
+    private String map;
 
     /** Constructor */
     public Level() {
@@ -14,9 +14,9 @@ public class Level extends Data {
     }
     
     /** Constructor */
-    public Level(final int id, final String level) {
+    public Level(final int id, final String map) {
         this.setId(id);
-        this.setLevel(level);
+        this.setMap(map);
     }
 
     public int getId() {
@@ -26,12 +26,12 @@ public class Level extends Data {
     public void setId(int id) { 
     	this.id = id; 
     }
-    public String getLevel() {
-        return this.level;
+    public String getMap() {
+        return this.map;
     }
 
-    public void setLevel(String level) { 
-    	this.level = level; 
+    public void setMap(String map) { 
+    	this.map = map; 
     }
 
 }

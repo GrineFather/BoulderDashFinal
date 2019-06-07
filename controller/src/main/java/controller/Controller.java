@@ -10,9 +10,7 @@ import contract.IModel;
  */
 public final class Controller extends Thread implements IController {
 
-	/** The  view*/
-	private IView view;
-	/** The  model*/
+	/** The  model */
 	private IModel model;
 	/** Last position of the player */
 	private int[] lastPositionPlayer = new int[2];
@@ -36,11 +34,9 @@ public final class Controller extends Thread implements IController {
 	 * 	Set the view.
 	 * @param view
 	 * 			the view
-	 *
 	 */
 
 	private void setView(final IView view) {
-		this.view = view;
 	}
 
 	/**
@@ -78,6 +74,7 @@ public final class Controller extends Thread implements IController {
 				this.model.setMovePlayer(0,1);
 				break;
 			default:
+				this.model.setMovePlayer(0, 0);
 				break;
 		}
 	}

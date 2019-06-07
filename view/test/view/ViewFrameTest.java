@@ -19,10 +19,6 @@ public class ViewFrameTest {
         this.Model = new IModel(){
             
             @Override
-            public boolean isWin() {
-                return false;
-            }
-            @Override
             public boolean getIsAlivePlayer() {
                 return false;
             }
@@ -41,13 +37,9 @@ public class ViewFrameTest {
             public Observable getObservable() {
                 return null;
             }
-            @Override
-            public boolean getIsOpenExit() {
-                return false;
-            }
         };
 
-        this.ViewFrame = new ViewFrame(Model);
+        this.ViewFrame = new ViewFrame();
 
         Class<?> modelReflector = this.ViewFrame.getClass();
         this.fields = modelReflector.getDeclaredFields();

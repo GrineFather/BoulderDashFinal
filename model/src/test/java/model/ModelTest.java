@@ -108,7 +108,7 @@ public class ModelTest {
 
 
         assertEquals(expectedLevel.getId(), currentLevel.getId());
-        assertEquals(expectedLevel.getLevel(), currentLevel.getLevel());
+        assertEquals(expectedLevel.getMap(), currentLevel.getMap());
     }
 
     /**

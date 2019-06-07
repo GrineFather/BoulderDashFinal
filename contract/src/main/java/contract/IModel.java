@@ -4,12 +4,6 @@ import java.util.Observable;
 
 public interface IModel {
 
-	/**
-	 * Gets the win state.
-	 *
-	 * @return the win state
-	 */
-	boolean isWin();
 
 	/**
 	 * Gets the alive state from the player.
@@ -50,11 +44,4 @@ public interface IModel {
 	 * @return the observable
 	 */
 	Observable getObservable();
-
-	/**
-	 * Gets the open state of the exit.
-	 *
-	 * @return the open state of the exit
-	 */
-	boolean getIsOpenExit();
 }

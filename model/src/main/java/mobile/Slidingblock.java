@@ -42,8 +42,7 @@ public abstract class Slidingblock extends Entity {
         this.model.updateEntity(getPositionX(), getPositionY() + 1,this);
         this.model.updateEntity(antX, antY,null);
 
-        if(getRelativeEntity(0,1) != null && getRelativeEntity(0,1).getType() == EntityType.PLAYER)
-        {
+        if(getRelativeEntity(0,1) != null && getRelativeEntity(0,1).getType() == EntityType.PLAYER) {
             this.model.getPlayer().die();
         }
 

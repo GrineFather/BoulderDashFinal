@@ -6,7 +6,7 @@ import model.Model;
 
 public abstract class Character extends Entity {
 
-    /** Every position possible in a one block radius. */
+    /** Every position possible around one block */
     final int[][] POSITIONS = {
             {0,0},
             {0,1},
@@ -27,8 +27,7 @@ public abstract class Character extends Entity {
      * @param y sets the Y position
      * @param type sets the type of the character
      */
-    Character(final Model model, final int x, final int y, final EntityType type)
-    {
+    Character(final Model model, final int x, final int y, final EntityType type) {
         super(model,x,y,type);
     }
 

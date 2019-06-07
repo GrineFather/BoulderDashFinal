@@ -38,8 +38,7 @@ public class Stone extends Slidingblock {
                return true;
            }
            return false;
-        }else if(move==Move.LEFT)
-        {
+        }else if(move==Move.LEFT) {
             if(getRelativeEntity(-1,0) == null)
             {
                 this.model.updateEntity(getPositionX()-1,getPositionY(),this);

@@ -10,7 +10,6 @@ import mobile.Player;
 import mobile.Slidingblock;
 import mobile.Stone;
 import motionless.Dirt;
-import motionless.Exit;
 import motionless.Wall;
 
 /**
@@ -29,12 +28,6 @@ public final class Model extends Observable implements IModel {
 	
 	/** Instantiation of player */
 	private Player player;
-	
-	/** Attribute win */
-	private boolean win;
-	
-	/** Attribute exit */
-	private Exit exit;
 
 	/**
 	 * Instantiates a new model.
@@ -45,6 +38,7 @@ public final class Model extends Observable implements IModel {
 	public Model(int id) throws Exception {
 		this.loadLevel(id);
 		this.buildMap();
+		this.convertMap();
 	}
 
 	/**
@@ -68,10 +62,14 @@ public final class Model extends Observable implements IModel {
 	private void buildMap() {
 		int x = 0;
 		int y = 0;
-		for(char c : level.getLevel().toCharArray()) {
+		for(char c : level.getMap().toCharArray()) {
 			if(c == ';') {
 				y++;
 				x = 0;
+				System.out.println();
+			}
+			else if (c == '.'){
+				break;
 			}
 			else {
 				switch (c) {	
@@ -91,11 +89,11 @@ public final class Model extends Observable implements IModel {
 					case 'I' :
 						map[y][x] = new Wall(this, x,y, EntityType.INLINE);
 						break;
-					case 'E' :
-						map[y][x] = new Exit(this, x,y);
-						break;
 					case 'O' :
 						map[y][x] = new Wall(this, x,y, EntityType.WALL);
+						break;
+					default:
+						map[y][x] = null;
 						break;
 				}
 				x++;
@@ -152,8 +150,7 @@ public final class Model extends Observable implements IModel {
 	 * @throws Exception when a bad position is given in parameter
 	 */
 	public void updateEntity(final int x, final int y, Entity entity) throws Exception {
-	    if(entity != null)
-        {
+	    if(entity != null) {
             entity.setPositionX(x);
             entity.setPositionY(y);
         }
@@ -194,81 +191,50 @@ public final class Model extends Observable implements IModel {
 	}
 
 	/**
-	 * Convert the world to a char array in two dimensions.
+	 * Convert the map to a char array in two dimensions.
 	 *
 	 * @return the converted char array
 	 */
 	public char[][] convertMap() {
-		char[][] cw = new char[20][30];
+		char[][] cm = new char[25][30];
 
-		for(int y = 0; y<20; y++)
+		for(int y = 0; y<25; y++)
 		{
 			for(int x = 0; x<30; x++)
 			{
 				if(map[y][x] != null) {
 					switch (map[y][x].getType()) {
 						case DIRT:
-							cw[y][x] = 'B';
-							System.out.print("B");
+							cm[y][x] = 'B';
 							break;
 						case DIAMOND:
-							cw[y][x] = 'D';
-							System.out.print("D");
+							cm[y][x] = 'D';
 							break;
 						case PLAYER:
-							cw[y][x] = 'P';
-							System.out.print("P");
+							cm[y][x] = 'P';
 							break;
 						case INLINE:
-							cw[y][x] = 'I';
-							System.out.print("I");
+							cm[y][x] = 'I';
 							break;
 						case WALL:
-							cw[y][x] = 'O';
-							System.out.print("O");
-							break;
-						case EXIT:
-							cw[y][x] = 'E';
-							System.out.print("E");
+							cm[y][x] = 'O';
 							break;
 						case STONE:
-							cw[y][x] = 'G';
-							System.out.print("G");
+							cm[y][x] = 'G';
 							break;
 						default:
-							cw[y][x] = ' ';
+							cm[y][x] = ' ';
 							break;
 					}
 				}
 				else
 				{
-					cw[y][x] = ' ';
+					cm[y][x] = ' ';
 				}
 			}
 		}
-
-        return cw;
+        return cm;
 	}
-
-	/**
-	 * Gets the win state.
-	 *
-	 * @return the win state
-	 */
-	public boolean isWin() { 
-		return this.win; 
-	}
-
-	/**
-	 * Sets the win state to true. Also notify the observers.
-	 */
-	public void winned()
-	{
-		this.win = true;
-		setChanged();
-		notifyObservers();
-	}
-
 	
 	/**
 	 * Gets the alive state from the player.
@@ -289,9 +255,10 @@ public final class Model extends Observable implements IModel {
 	 *
 	 * @throws Exception when a bad position is given in parameter
 	 */
-    public void setMovePlayer(final int x, final int y) throws Exception
-    {
+    public void setMovePlayer(final int x, final int y) throws Exception {
         this.getPlayer().move(x, y);
+        setChanged();
+        notifyObservers();
     }
 
 	/**
@@ -299,20 +266,10 @@ public final class Model extends Observable implements IModel {
 	 *
 	 * @return the position of the player
 	 */
-    public int[] getPositionsPlayer()
-	{
+    public int[] getPositionsPlayer() { 
 		int[] pos = new int[2];
-		pos[2] = this.getPlayer().getPositionX();
-		pos[2] = this.getPlayer().getPositionY();
+		pos[0] = this.getPlayer().getPositionX();
+		pos[1] = this.getPlayer().getPositionY();
 		return pos;
-	}
-
-	/**
-	 * Gets the open state of the exit.
-	 *
-	 * @return the open state of the exit
-	 */
-	public boolean getIsOpenExit() {
-		return this.exit.isOpen();
 	}
 }
