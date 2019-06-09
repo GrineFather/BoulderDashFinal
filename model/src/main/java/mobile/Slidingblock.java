@@ -32,7 +32,7 @@ public abstract class Slidingblock extends Entity {
     /**
      * Causes the entity to fall. If a "Character" type entity is below, causes its death.
      *
-     * @throws Exception when the given positions are out of the world
+     * @throws Exception when the given positions are out of the map
      */
     public void fall() throws Exception {
 
@@ -53,7 +53,7 @@ public abstract class Slidingblock extends Entity {
      * Slides an entity to the side.
      *
      * @param isDefault true for to slide the entity on the left and false on the right
-     * @throws Exception when the given positions are out of the world
+     * @throws Exception when the given positions are out of the map
      */
     public void slide(final boolean isDefault) throws Exception {
         int antX = getPositionX();
@@ -70,9 +70,9 @@ public abstract class Slidingblock extends Entity {
     }
 
     /**
-     * Allows to check if the entity can slip or fall.
+     * Allows to check if the entity can slide or fall.
      *
-     * @throws Exception when the given positions are out of the world
+     * @throws Exception when the given positions are out of the map
      */
     public void pathFinder() throws Exception {
         if(!this.hasMove) {

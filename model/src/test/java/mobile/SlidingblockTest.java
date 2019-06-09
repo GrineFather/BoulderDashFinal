@@ -21,10 +21,8 @@ public class SlidingblockTest extends EntityTest {
      * @throws Exception value negative
      */
     @Test
-    public void testFall() throws Exception
-    {
-        if(this.entity instanceof Stone)
-        {
+    public void testFall() throws Exception {
+        if(this.entity instanceof Stone) {
             int expectedY = 5;
             ((Slidingblock)this.entity).fall();
             assertEquals(expectedY, this.entity.getPositionY());
@@ -45,10 +43,8 @@ public class SlidingblockTest extends EntityTest {
      * @throws Exception value negative
      */
     @Test
-    public void testSlide() throws Exception
-    {
-        if(this.entity instanceof Diamond)
-        {
+    public void testSlide() throws Exception {
+        if(this.entity instanceof Diamond) {
             int expectedX = 11;
             assertNull(this.model.getMap()[4][11]);
             assertNull(this.model.getMap()[5][11]);
