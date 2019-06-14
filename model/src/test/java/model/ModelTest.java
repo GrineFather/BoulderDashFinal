@@ -75,7 +75,8 @@ public class ModelTest {
      * Test method for {@link Model#getMap()}
      * @throws Exception negative values
      */
-    @Test
+    @SuppressWarnings("deprecation")
+	@Test
     public void testGetMap() throws Exception {
         Entity[][] expectedMap = null;
 

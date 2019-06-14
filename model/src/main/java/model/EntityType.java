@@ -7,6 +7,5 @@ public enum EntityType {
 	WALL,
 	DIRT,
 	INLINE,
-	EXIT,
 	PLAYER;	
 }

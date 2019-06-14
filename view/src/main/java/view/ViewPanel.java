@@ -115,14 +115,14 @@ public class ViewPanel extends JPanel {
 	/** Changes the location of the recovered images. */
 	protected void Modify() {
 		try {
-			this.Breakable = ImageIO.read(new File("C:\\Users\\rg261\\OneDrive\\Bureau\\image\\B.png"));
-			this.Background = ImageIO.read(new File("C:\\Users\\rg261\\OneDrive\\Bureau\\image\\1.png"));
-			this.Wall = ImageIO.read(new File("C:\\Users\\rg261\\OneDrive\\Bureau\\image\\E.png"));
-			this.Inline = ImageIO.read(new File("C:\\Users\\rg261\\OneDrive\\Bureau\\image\\E.png"));
-			this.Diamond = ImageIO.read(new File("C:\\Users\\rg261\\OneDrive\\Bureau\\image\\D.png"));
-			this.Player = ImageIO.read(new File("C:\\Users\\rg261\\OneDrive\\Bureau\\image\\P.png"));
-			this.Gravity = ImageIO.read(new File("C:\\Users\\rg261\\OneDrive\\Bureau\\image\\G.png"));
-			this.Lose = ImageIO.read(new File("C:\\Users\\rg261\\OneDrive\\Bureau\\image\\L.png"));
+			this.Breakable = ImageIO.read(new File("C:\\Users\\rg261\\git\\BoulderDashFinal\\model\\src\\main\\resources\\image\\B.png"));
+			this.Background = ImageIO.read(new File("C:\\Users\\rg261\\git\\BoulderDashFinal\\model\\src\\main\\resources\\image\\1.png"));
+			this.Wall = ImageIO.read(new File("C:\\Users\\rg261\\git\\BoulderDashFinal\\model\\src\\main\\resources\\image\\E.png"));
+			this.Inline = ImageIO.read(new File("C:\\Users\\rg261\\git\\BoulderDashFinal\\model\\src\\main\\resources\\image\\E.png"));
+			this.Diamond = ImageIO.read(new File("C:\\Users\\rg261\\git\\BoulderDashFinal\\model\\src\\main\\resources\\image\\D.png"));
+			this.Player = ImageIO.read(new File("C:\\Users\\rg261\\git\\BoulderDashFinal\\model\\src\\main\\resources\\image\\P.png"));
+			this.Gravity = ImageIO.read(new File("C:\\Users\\rg261\\git\\BoulderDashFinal\\model\\src\\main\\resources\\image\\G.png"));
+			this.Lose = ImageIO.read(new File("C:\\Users\\rg261\\git\\BoulderDashFinal\\model\\src\\main\\resources\\image\\L.png"));
 		} catch (IOException e) {
 		}
 	}
